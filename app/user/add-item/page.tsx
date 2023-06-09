@@ -13,10 +13,12 @@ const EMPTY_ITEM = {
 
 const AddItem = () => {
   const [formData, setFormData] = useState(EMPTY_ITEM);
+  const [loading, setLoading] = useState(false);
 
   const route = useRouter();
 
   const onSubmit = async () => {
+    setLoading(true);
     try {
       const bearer = localStorage.getItem("token");
 
@@ -30,6 +32,8 @@ const AddItem = () => {
       });
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -53,9 +57,13 @@ const AddItem = () => {
           setFormData={setFormData}
         />
 
-        <Button type={ButtonType.Button} onClick={onSubmit}>
-          Submit
-        </Button>
+        {loading ? (
+          <p className="text-center">Loading...</p>
+        ) : (
+          <Button type={ButtonType.Button} onClick={onSubmit}>
+            Submit
+          </Button>
+        )}
       </form>
     </div>
   );

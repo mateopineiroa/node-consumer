@@ -13,10 +13,12 @@ const USER_DATA = {
 
 const Login = () => {
   const [formData, setFormData] = useState(USER_DATA);
+  const [loading, setLoading] = useState(false);
 
   const route = useRouter();
 
   const onSubmit = async () => {
+    setLoading(true);
     try {
       const response = await fetch(
         "https://api-learning-node.onrender.com/mongoose/login",
@@ -38,6 +40,8 @@ const Login = () => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -53,6 +57,7 @@ const Login = () => {
           fieldName="username"
           setFormData={setFormData}
         />
+
         <Input
           label="Password"
           Type={InputMode.Password}
@@ -61,9 +66,13 @@ const Login = () => {
           setFormData={setFormData}
         />
 
-        <Button type={ButtonType.Button} onClick={onSubmit}>
-          Submit
-        </Button>
+        {loading ? (
+          <p className="text-center">Loading...</p>
+        ) : (
+          <Button type={ButtonType.Button} onClick={onSubmit}>
+            Submit
+          </Button>
+        )}
       </form>
     </div>
   );
