@@ -12,29 +12,32 @@ type ItemType = {
 };
 
 const Items = () => {
-  const bearerToken = localStorage.getItem("token");
-
   const {
     isLoading,
     error,
     data: items,
   } = useQuery("items", async () => {
-    const res = await fetch(
-      "https://api-learning-node.onrender.com/mongoose/items",
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${bearerToken}`,
-          "Content-Type": "application/json",
-        },
+    if (typeof window !== "undefined") {
+      const bearerToken = localStorage.getItem("token");
+      const res = await fetch(
+        "https://api-learning-node.onrender.com/mongoose/items",
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${bearerToken}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
       }
-    );
 
-    if (!res.ok) {
-      throw new Error("Network response was not ok");
+      return res.json();
+    } else {
+      throw "window === undefined";
     }
-
-    return res.json();
   });
 
   if (isLoading) return "Loading";
