@@ -1,7 +1,7 @@
 "use client";
-import Button, { ButtonType } from "@/Components/Button/Button";
-import Input from "@/Components/Input";
-import { InputMode } from "@/Components/Input/Input";
+import Button, { ButtonType } from "@/components/Button/Button";
+import Input from "@/components/Input";
+import { InputMode } from "@/components/Input/Input";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useQuery } from "react-query";

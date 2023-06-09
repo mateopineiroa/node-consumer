@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-import Button from "@/Components/Button/Button";
+import Button from "@/components/Button/Button";
 
 import "../globals.css";
 
