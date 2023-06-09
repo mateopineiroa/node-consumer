@@ -1,6 +1,6 @@
 "use client";
 
-import Item from "@/components/Item";
+import Item from "@/Components/Item";
 import { useRouter } from "next/navigation";
 import { useQuery } from "react-query";
 
