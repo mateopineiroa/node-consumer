@@ -2,9 +2,7 @@
 import Button, { ButtonType } from "@/Components/Button/Button";
 import Input from "@/Components/Input";
 import { InputMode } from "@/Components/Input/Input";
-import { useRouter } from "next/navigation";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { useQuery } from "react-query";
+import { useState } from "react";
 
 const EMPTY_ITEM = {
   name: "",
@@ -14,8 +12,6 @@ const EMPTY_ITEM = {
 const AddItem = () => {
   const [formData, setFormData] = useState(EMPTY_ITEM);
   const [loading, setLoading] = useState(false);
-
-  const route = useRouter();
 
   const onSubmit = async () => {
     setLoading(true);
@@ -49,6 +45,7 @@ const AddItem = () => {
           fieldName="name"
           setFormData={setFormData}
         />
+
         <Input
           label="Description"
           Type={InputMode.Text}
