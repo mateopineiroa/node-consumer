@@ -25,6 +25,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <meta name="theme-color" content="#0080ff" />
       <body className={inter.className}>
         <QueryClientProvider client={queryClient}>
           <div className="flex flex-col h-screen">
